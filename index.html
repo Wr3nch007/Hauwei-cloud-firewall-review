@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Huawei Cloud Firewall Review Tool</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f7fb;
+margin:40px;
+}
+
+.header{
+display:flex;
+align-items:center;
+margin-bottom:30px;
+}
+
+.logo{
+width:60px;
+margin-right:15px;
+}
+
+h1{
+color:#c70000;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:8px;
+box-shadow:0px 2px 8px rgba(0,0,0,0.1);
+}
+
+button{
+background:#c70000;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:4px;
+cursor:pointer;
+}
+
+table{
+border-collapse: collapse;
+width:100%;
+margin-top:20px;
+}
+
+th, td{
+border:1px solid #ddd;
+padding:10px;
+}
+
+th{
+background:#c70000;
+color:white;
+}
+
+.footer{
+margin-top:30px;
+text-align:right;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<img class="logo"
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Huawei_Cloud_logo.svg/512px-Huawei_Cloud_logo.svg.png">
+
+<h1>Huawei Cloud Firewall Review Tool</h1>
+
+</div>
+
+<div class="container">
+
+<form method="POST" enctype="multipart/form-data">
+
+<input type="file" name="file" required>
+
+<br><br>
+
+<button type="submit">Analyze Firewall</button>
+
+</form>
+
+
+{% if findings %}
+
+<h2>Detected Findings</h2>
+
+<a href="/download">
+<button>Download Action Tracker</button>
+</a>
+
+<table>
+
+<tr>
+<th>S.No</th>
+<th>Rule ID</th>
+<th>Vulnerability</th>
+<th>Severity</th>
+<th>Recommendation</th>
+<th>Reference</th>
+</tr>
+
+{% for row in findings %}
+
+<tr>
+<td>{{row["S.No"]}}</td>
+<td>{{row["Rule ID"]}}</td>
+<td>{{row["Vulnerability"]}}</td>
+<td>{{row["Severity"]}}</td>
+<td>{{row["Recommendation"]}}</td>
+<td>{{row["Reference"]}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endif %}
+
+</div>
+
+<div class="footer">
+Developed by AK
+</div>
+
+</body>
+</html>
